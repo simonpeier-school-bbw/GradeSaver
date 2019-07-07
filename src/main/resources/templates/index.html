@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>GradeSaver</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h1 class="my-5">Noten</h1>
+		<table class="table table-striped">
+			<th:block th:each="semester : ${semesters}">
+				<thead>
+					<tr>
+						<th th:text="${semester.name}"></th>
+					<!-- 	<th><a href="/add-subject" class="btn btn-primary float-right">Fach hinzufügen</a></th>-->
+						<th><a th:href="@{/add-subject/{id}(id=${semester.id})}" class="btn btn-primary float-right">Fach hinzufügen</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--<tr th:if="${sportlers.empty}">
+					<td colspan="5">No Reservations Available</td>
+				</tr>-->
+					<tr th:each="subject : ${semester.subjects}">
+						<td th:text="${subject.name}"></td>
+						<td th:text="${subject.description}"></td>
+				</tbody>
+			</th:block>
+		</table>
+		<div>
+			<a href="/add-semester" class="btn btn-primary">Semester hinzufügen</a>
+		</div>
+	</div>
+	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

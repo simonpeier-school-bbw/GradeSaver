@@ -1,22 +1,29 @@
-package ch.bbw.gradesaver;
+package ch.bbw.gradesaver.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * Person Entity
+ * Semester Entity
  * 
  * @author Simon Peier
  */
 @Entity
+@Table(name = "SEMESTER")
 public class Semester {
 	@Id
 	@GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "sequence", initialValue = 10)
+	@Column(name = "SemesterID")
 	private Long id;
 
 	@NotEmpty
@@ -24,6 +31,9 @@ public class Semester {
 
 	@NotEmpty
 	private String description;
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	private List<Subject> subjects;
 
 	public Semester() {
 		super();
@@ -59,6 +69,23 @@ public class Semester {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
+
+	public void addSubject(Subject subject) {
+		if (subject == null) {
+			subjects = new ArrayList<>();
+		}
+
+		subjects.add(subject);
+		subject.setSemester(this);
 	}
 
 	@Override

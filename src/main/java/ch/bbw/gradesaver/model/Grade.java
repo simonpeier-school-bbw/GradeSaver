@@ -1,28 +1,28 @@
-package ch.bbw.gradesaver;
+package ch.bbw.gradesaver.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.*;
 
 /**
- * Person Entity
+ * Grade Entity
  * 
  * @author Simon Peier
  */
 @Entity
+@Table(name = "GRADE")
 public class Grade {
 	@Id
 	@GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "sequence", initialValue = 10)
 	private Long id;
 
 	@NotNull
 	@Min(1)
 	@Max(6)
-	private int grade;
+	private double grade;
 
 	@NotEmpty
 	private String description;
@@ -43,11 +43,11 @@ public class Grade {
 		this.description = grade.description;
 	}
 
-	public int getGrade() {
+	public double getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(double grade) {
 		this.grade = grade;
 	}
 
