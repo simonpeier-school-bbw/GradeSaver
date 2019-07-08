@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Fach hinzufügen</title>
+<title>Note hinzufügen</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
 	rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-		<h1 class="my-5">Fach hinzufügen</h1>
+		<h1 class="my-5">Note hinzufügen</h1>
 		<div class="my-5">
-			<form action="#" th:action="@{/add-subject}" th:object="${subject}"
+			<form action="#" th:action="@{/add-grade}" th:object="${grade}"
 				method="post">
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Name</label> <input
-						type="text" class="form-control col-sm-10" th:field="*{name}"
+						type="number" class="form-control col-sm-10" th:field="*{grade}"
 						required>
 				</div>
 				<div class="form-group row mb-5">
@@ -28,7 +28,7 @@
 			</form>
 		</div>
 		<div>
-			<p th:text="${semester}"></p>
+			<p th:text="${subject.id}"></p>
 		</div>
 	</div>
 	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>

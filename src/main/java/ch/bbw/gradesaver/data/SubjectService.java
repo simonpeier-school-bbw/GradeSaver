@@ -27,12 +27,15 @@ public class SubjectService {
 		return subjects;
 	}
 
+	public Subject getSubject(long id) {
+		return subjectRepository.findById(id).get();
+	}
+
 	public void addSubject(Subject subject) {
 		subjectRepository.save(subject);
 	}
 
 	public void updateSubject(Long id, Subject subject) {
-		subjectRepository.deleteById(id);
 		subjectRepository.save(subject);
 	}
 

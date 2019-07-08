@@ -4,6 +4,11 @@ import ch.bbw.gradesaver.model.Grade;
 import ch.bbw.gradesaver.model.Semester;
 import ch.bbw.gradesaver.model.Subject;
 
+/**
+ * GradeCalculator
+ * 
+ * @author Simon Peier
+ */
 public class GradeCalculator {
 
 	/**

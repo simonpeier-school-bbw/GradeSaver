@@ -1,15 +1,16 @@
 package ch.bbw.gradesaver.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -33,13 +34,10 @@ public class Subject {
 	@NotEmpty
 	private String description;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@ElementCollection
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	private List<Grade> grades;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "SemesterID", nullable = false)
-	private Semester semester;
-
 	public Subject() {
 		super();
 	}
@@ -84,14 +82,14 @@ public class Subject {
 		this.grades = grades;
 	}
 	
-	public void setSemester(Semester semester) {
-		this.semester = semester; 
+	public void addGrade(Grade grade) {
+		if (grades == null) {
+			grades = new ArrayList<>();
+		}
+
+		grades.add(grade);
 	}
 	
-	public Semester getSemester() {
-		return semester;
-	}
-
 	@Override
 	public String toString() {
 		return "Subject [id=" + id + ", name=" + name + ", description=" + description + "]";

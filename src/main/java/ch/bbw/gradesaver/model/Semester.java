@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,8 @@ public class Semester {
 	@NotEmpty
 	private String description;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@ElementCollection
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	private List<Subject> subjects;
 
 	public Semester() {
@@ -80,12 +83,11 @@ public class Semester {
 	}
 
 	public void addSubject(Subject subject) {
-		if (subject == null) {
+		if (subjects == null) {
 			subjects = new ArrayList<>();
 		}
 
 		subjects.add(subject);
-		subject.setSemester(this);
 	}
 
 	@Override

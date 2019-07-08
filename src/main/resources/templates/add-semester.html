@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<h1 class="my-5">Semester hinzufügen</h1>
-		
+
 		<div class="my-5">
 			<form action="#" th:action="@{/add-semester}" th:object="${semester}"
 				method="post">
@@ -20,8 +20,8 @@
 				</div>
 				<div class="form-group row mb-5">
 					<label class="col-sm-2 col-form-label">Beschreibung</label> <input
-						type="text" class="form-control col-sm-10" th:field="*{description}"
-						required>
+						type="text" class="form-control col-sm-10"
+						th:field="*{description}" required>
 				</div>
 				<div class="my-5">
 					<button class="btn btn-primary" type="submit">Bestätigen</button>
