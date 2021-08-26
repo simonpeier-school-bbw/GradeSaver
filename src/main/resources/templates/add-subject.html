@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Fach hinzufügen</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h1 class="my-5">Fach hinzufügen</h1>
+		<div class="my-5">
+			<form action="#" th:action="@{/add-subject}" th:object="${subject}"
+				method="post">
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Name</label> <input
+						type="text" class="form-control col-sm-10" th:field="*{name}"
+						required>
+				</div>
+				<div class="form-group row mb-5">
+					<label class="col-sm-2 col-form-label">Beschreibung</label> <input
+						type="text" class="form-control col-sm-10"
+						th:field="*{description}" required>
+				</div>
+				<div class="my-5">
+					<button class="btn btn-primary" type="submit">Bestätigen</button>
+				</div>
+			</form>
+		</div>
+		<div>
+			<p th:text="${semester}"></p>
+		</div>
+	</div>
+	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
